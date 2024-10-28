@@ -64,14 +64,19 @@ export class NasaSearch extends LitElement {
         <input id="input" placeholder="Search NASA images" @input="${this.inputChanged}" />
       </div>
     </details>
+  
     <div class="results">
       ${this.items.map((item, index) => html`
+      <a href="${item.links[0].href}" target = "_blank">
       <nasa-image
         source="${item.links[0].href}"
         title="${item.data[0].title}"
+        .alt="${item.data[0].description || 'NASA Image'}"
+        .secondaryCreator="${item.data[0].secondary_creator || 'Anonymous'}"
       ></nasa-image>
+      </a>
+      </div>
       `)}
-    </div>
     `;
   }
 
